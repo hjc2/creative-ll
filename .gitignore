@@ -1,3 +1,4 @@
 
 OPEN_API_KEY.py
 __pycache__/OPEN_API_KEY.cpython-310.pyc
+*.pyc

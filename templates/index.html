@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Game</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+  </head>
+  <body>
+    <h1>My Game</h1>
+    <h2>Score: {{ score }}</h2>
+    <h2>High Score: {{ highscore }} </h2>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <form action="/" method="POST">
+      <label for="question">Question:</label><br>
+      <input type="text" id="question" name="question"><br>
+      <label for="expected_answer">Expected Answer:</label><br>
+      <input type="text" id="expected_answer" name="expected_answer"><br>
+      <label for="user_answer">Your Answer:</label><br>
+      <input type="text" id="user_answer" name="user_answer"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
