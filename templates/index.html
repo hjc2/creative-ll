@@ -8,9 +8,7 @@
     <h1>My Game</h1>
     <h2>Score: {{ score }}</h2>
     <h2>High Score: {{ high_score }}</h2> <!-- Add this line -->
-    {% if message %}
-    <p>{{ message }}</p>
-    {% endif %}
+
     <form action="/" method="POST">
       <label for="question">Question:</label><br>
       <input type="text" id="question" name="question" value="{{ question }}"><br>
@@ -18,5 +16,11 @@
       <input type="text" id="user_answer" name="user_answer"><br><br>
       <input type="submit" value="Submit">
     </form>
+    <div id="message-box">
+      {% if message %}
+      <h3>Explanation:</h3>
+      <p>{{ message }}</p>
+      {% endif %}
+    </div>
   </body>
 </html>

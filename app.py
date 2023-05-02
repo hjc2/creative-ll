@@ -28,6 +28,7 @@ def index():
         if decide(question, user_answer):
             message = 'Correct!'
             score += 1
+
         else:
             message = explain(question, user_answer)
             score = 0
@@ -75,7 +76,14 @@ def decide(question, answer):
 def explain(question, answer):
     content = "Question: " + question + " Answer: " + answer + ". Explain why this is a bad answer."
     
-    return(apiQ(content))
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": content}],
+        max_tokens=100,
+        temperature = 0
+    )
+    
+    return(completion['choices'][0]['message']['content'])
 
 
 if __name__ == '__main__':
