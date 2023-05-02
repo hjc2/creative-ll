@@ -16,11 +16,21 @@
       <input type="text" id="user_answer" name="user_answer"><br><br>
       <input type="submit" value="Submit">
     </form>
+
+
+
+    {% if message == "Correct!" %}
+    <div id="correct-box">
+      <p>{{ message }}</p>
+    {% endif %}
+
+    {% if message %}
+    {% if message != "Correct!" %}
     <div id="message-box">
-      {% if message %}
       <h3>Explanation:</h3>
       <p>{{ message }}</p>
-      {% endif %}
     </div>
+    {% endif %}
+    {% endif %}
   </body>
 </html>
