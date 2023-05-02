@@ -4,6 +4,15 @@ app = Flask(__name__)
 
 high_score = 0  # Initialize the high score to 0
 
+
+
+import os
+import openai
+
+import OPEN_API_KEY
+
+openai.api_key = OPEN_API_KEY.mykey
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global high_score  # Use the global variable
@@ -24,7 +33,21 @@ def index():
         if score > high_score:  # Update the high score if necessary
             high_score = score
 
+        message = apiQ(user_answer)
+
+
     return render_template('index.html', score=score, message=message, high_score=high_score)
+
+
+
+def apiQ(content):
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": content}],
+        max_tokens=200,
+        temperature = 0
+    )
+    return(completion['choices'][0]['message']['content'])
 
 if __name__ == '__main__':
     app.run()
