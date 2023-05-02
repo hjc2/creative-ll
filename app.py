@@ -1,8 +1,8 @@
 from operator import contains
 from flask import Flask, render_template, request
 
-import random
 
+import values
 
 app = Flask(__name__)
 high_score = 0  # Initialize the high score to 0
@@ -13,6 +13,7 @@ import openai
 import OPEN_API_KEY
 
 openai.api_key = OPEN_API_KEY.mykey
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -39,7 +40,7 @@ def index():
 
         # message = apiQ(user_answer)
 
-    question = apiQ("generate a hard question about politics and conflicts? Be specific. Make it short, less than 12 words Ex. Should we ban books that include hate speech? How do we solve the isreali palestinian conflict? How can governments address income inequality? How do we stop school shootings in America?")
+    question = apiQ(values.qgen)
 
     return render_template('index.html', score=score, message=message, high_score=high_score, question=question)
 
@@ -56,7 +57,7 @@ def apiQ(content):
 
 
 def decide(question, answer):
-    content = "Question: " + question + " Answer: " + answer + ". Prompt: Is this is a good answer to the question? Answer Yes or No."
+    content = values.decideGen(question, answer)
 
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -74,8 +75,9 @@ def decide(question, answer):
     return False
 
 def explain(question, answer):
-    content = "Question: " + question + " Answer: " + answer + ". Explain why this is a bad answer."
-    
+
+    content = values.explainGen(question, answer)
+        
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": content}],
