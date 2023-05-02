@@ -13,7 +13,7 @@
     {% endif %}
     <form action="/" method="POST">
       <label for="question">Question:</label><br>
-      <input type="text" id="question" name="question"><br>
+      <input type="text" id="question" name="question" value="{{ question }}"><br>
       <label for="user_answer">Your Answer:</label><br>
       <input type="text" id="user_answer" name="user_answer"><br><br>
       <input type="submit" value="Submit">
