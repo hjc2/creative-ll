@@ -3,12 +3,11 @@
   <head>
     <title>My Game</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
   </head>
   <body>
     <h1>My Game</h1>
     <h2>Score: {{ score }}</h2>
-    <h2>High Score: {{ highscore }} </h2>
+    <h2>High Score: {{ high_score }}</h2> <!-- Add this line -->
     {% if message %}
     <p>{{ message }}</p>
     {% endif %}
