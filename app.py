@@ -6,8 +6,10 @@ from flask import Flask, render_template, request
 import values
 
 app = Flask(__name__)
+
 high_score = 0  # Initialize the high score to 0
 score = 0
+
 
 import openai
 
@@ -73,14 +75,18 @@ def decide(question, answer):
     
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": content}],
+        messages=[{"role": "user", "content": g}],
         max_tokens=150,
         temperature = 0
     )
+    z = completion['choices'][0]['message']['content']
 
+    print("v: " + v)
+    print("z: " + z)
+    
     #see if yes is in v
     if "Yes" in v:
-        message = 
+
         return True
 
     return False
