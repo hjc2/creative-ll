@@ -1,3 +1,4 @@
+from email import message
 from operator import contains
 from flask import Flask, render_template, request
 
@@ -68,8 +69,18 @@ def decide(question, answer):
 
     v = completion['choices'][0]['message']['content']
 
+    g = values.yesNo(v)
+    
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": content}],
+        max_tokens=150,
+        temperature = 0
+    )
+
     #see if yes is in v
     if "Yes" in v:
+        message = 
         return True
 
     return False
@@ -77,7 +88,7 @@ def decide(question, answer):
 def explain(question, answer):
 
     content = values.explainGen(question, answer)
-        
+
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": content}],

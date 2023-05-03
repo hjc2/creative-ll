@@ -8,4 +8,8 @@ def decideGen(question, answer):
 
 
 def explainGen(question, answer):
-    return("Question: " + question + " Answer: " + answer + ". Explain why this is a bad answer.")
+    # return("Question: " + question + " Answer: " + answer + ". Respond as a professor who is experienced in foreign policy and political science. Explain why this is an incorrect answer.")
+    return("Question: " + question + " Answer: " + answer + ". Respond as a professor who is experienced in foreign policy and political science. Explain why this is an incorrect answer. Do not say who you are")
+
+def yesNo(answer):
+    return(answer + "does this answer say more Yes or No? Answer Yes or No.")
